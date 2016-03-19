@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Bitlist</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic,300italic' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'application', 'controllers/' << params[:controller], media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic,300italic' rel='stylesheet' type='text/css'>
+  <%# Render CSS for application and controllers %>
+  <%= stylesheet_link_tag 'application', 'controllers/' << params[:controller], media: 'all', 'data-turbolinks-track' => true %>
+
+  <%# Render CSS from partials or other specific cases %>
+  <%= yield :css %>
+
 </head>
+
 <body>
+
   <%= yield %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%# Render JS from application and controllers at the bottom %>
+  <%= javascript_include_tag 'application', 'controllers/' << params[:controller], 'data-turbolinks-track' => true %>
+
 </body>
 </html>

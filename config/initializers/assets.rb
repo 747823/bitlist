@@ -9,3 +9,6 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+
+# Precompile all controller and partials JS and CSS
+Rails.application.config.assets.precompile += Dir.glob("#{Rails.root}/app/assets/{javascripts,stylesheets}/{controllers,partials}/*")

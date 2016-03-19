@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require vue
-//= require_tree .
 //
 // Always put application code in a closure with the "use strict"; directive:
 // (function(){

@@ -1,2 +1,0 @@
-class FindController < ApplicationController
-end

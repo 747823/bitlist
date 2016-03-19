@@ -3,16 +3,11 @@
 <head>
   <title>Bitlist</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic,300italic' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', 'controllers/' << params[:controller], media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="page">
-
-    <%= yield %>
-
-  </div>
-  
+  <%= yield %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

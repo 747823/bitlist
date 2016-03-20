@@ -1,0 +1,34 @@
+
+// Variables
+$bgcolor: #fcfcfc
+$height: 72px
+$bordercolor: #d2d2d2
+
+// Sidebar fixed to left side of the screen
+.contact-bar-wrapper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: $height
+  display: block
+  z-index: 500
+  .bar
+    width: 100%
+    height: 100%
+    background: $bgcolor
+    overflow: hidden
+    border-bottom: 1px solid $bordercolor
+    padding-top: 18px
+    text-align: center
+    *
+      text-align: start
+    button, p, a, h1, h2, h3, h4, h5, div
+      display: inline-block
+      vertical-align: middle
+    p 
+      margin: 0
+
+// Adjust page's left padding to fit the sidebar in
+.page
+  padding-top: $height

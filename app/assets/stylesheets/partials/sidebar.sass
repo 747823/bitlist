@@ -1,0 +1,31 @@
+
+// Variables
+$bgcolor: #3a3a3a
+$width: 72px
+$expanded-width: 250px
+
+// Sidebar fixed to left side of the screen
+.sidebar
+  position: fixed
+  top: 0 
+  left: 0
+  height: 100%
+  display: block
+  background: $bgcolor
+  width: $width
+  transition: width 0.2s
+  overflow: hidden
+  z-index: 1000
+.sidebar.expanded
+  width: $expanded-width
+  overflow-y: auto
+
+// Adjust page's left padding to fit the sidebar in
+.page
+  padding-left: $width
+  .contact-bar-wrapper
+    padding-left: $width
+.page.expanded
+  padding-left: $expanded-width
+  .contact-bar-wrapper
+    padding-left: $expanded-width

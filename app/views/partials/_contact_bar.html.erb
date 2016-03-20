@@ -1,0 +1,18 @@
+
+<%# Include sass for this partial %>
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'partials/contact_bar', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
+
+<div class="contact-bar-wrapper">
+  <div class="bar">
+    <div class="main-grid">
+
+      <%#This stuff should be in a grid layout eventually I think %>
+      <button class="light-grey">Left Button</button>
+      <p>This is text content</p>
+      <button>CTA Button</button>
+
+    </div>
+  </div>
+</div>

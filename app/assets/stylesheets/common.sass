@@ -1,0 +1,68 @@
+
+// Mobile
+$break1: 500px
+// Tablet portrait
+$break2: 980px
+// Tablet/laptop landscape
+$break3: 1300px
+
+
+*
+  box-sizing: border-box
+  font-family: 'Open Sans', Arial, sans-serif
+  position: relative
+
+html
+  height: 100%
+
+body, html
+  margin: 0
+  padding: 0
+  min-height: 100%
+
+body 
+  position: relative
+
+h1, h2, h3, h4, h5
+  font-weight: 400
+
+a
+  text-decoration: none
+
+.page 
+  overflow: auto
+  transition: padding 0.2s
+
+.main-grid
+  // Fix collapsing margins on top/bottom:
+  margin: -1px auto 0
+  padding: 1px 0
+  border: 1px solid #ccc
+  // Grid width breakpoints
+  width: 1020px
+  @media ( max-width: $break3 )
+    width: 700px
+  @media ( max-width: $break2 )
+    width: 100%
+    max-width: 700px
+
+button, .button
+  display: inline-block
+  padding: 5px 20px 6px
+  background: #2a65bf
+  border: 1px solid #2a65bf
+  border-radius: 1px
+  transition: background 0.2s
+  color: #fff
+  &:hover
+    cursor: pointer
+    background: #3377de
+  &.light-grey
+    color: #bbb
+    text-decoration: underline
+    background: #fefefe
+    border: 1px solid #dfdfdf
+    // &:hover
+    //   border: 1px solid #ccc
+    //   color: #bbb
+    //   text-decoration: underline

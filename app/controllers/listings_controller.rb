@@ -24,27 +24,30 @@ class ListingsController < ApplicationController
 
     # Respond with error if no categories
     # This should be more extensive, but this will probably never happen so we'll leave it for now
-    # if !category_params || category_params.empty?
-    #   respond_to do |format|
-    #     format.json { render :json => { status: "bad_request", message: "No categories selected!" } }
-    #   end
-    # end
+    if !category_params || category_params.empty?
+      respond_to do |format|
+        format.json { render :json => { status: "bad_request", message: "No categories selected!" } }
+      end
+    end
 
-    byebug
+    # byebug
 
     # Create the listing and save it in the db
     @listing = Listing.new( listing_params )
     @listing.save
 
+    # Set secret attributes
     @listing.update_attribute( :validated, false )
     @listing.update_attribute( :secret_key, SecureRandom.hex )
 
     # Check if the categories exist, create them if they don't, and create the categorization associations
-    category_params[:category_names].each do |n|
+    category_params[:category_names].each do |str|
       # Format the category name string
-      n.gsub!(/[^A-Za-z\s]/, "").strip!.downcase!
-      cat = Category.find_by_name(n) || Category.create({name: n})
-      categorization = Categorization.create({listing_id: @listing.id, category_id: cat.id})
+      name = str.gsub(/[^A-Za-z\s]/, "").strip.downcase
+      cat = Category.find_by_name(name) || Category.create({name: name})
+      Categorization.create({listing_id: @listing.id, category_id: cat.id})
+
+      # LATER: Category should also get email address from last poster in case we get spam requests
     end
 
 

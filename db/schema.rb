@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320200129) do
+ActiveRecord::Schema.define(version: 20160320234041) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20160320200129) do
     t.string   "currency"
     t.string   "condition"
     t.text     "description"
+    t.boolean  "validated"
+    t.string   "secret_key"
   end
 
 end

@@ -1,3 +1,36 @@
-<div class="page">
-  <h1>Listings#show</h1>
+
+<div>
+
+  <%= render "partials/sidebar" %>
+
+  <div class="page">
+
+    <%= render "partials/contact_bar" %>
+
+    <div class="main-grid">
+    <% if @can_view %>
+
+      <h1>
+        <%=@listing[:title]%></h1>
+      <h2>Seller description:</h2>
+      <p>
+        <%=@listing[:description]%></p>
+      <h2>Listing details:</h2>
+      <ul>
+        <li>Price: <%=@listing[:price]%> <%=@listing[:currency]%></li>
+        <li>Seller: <%=@listing[:author]%></li>
+        <li>Location: <%=@listing[:zipcode]%></li>
+        <li>Address: <%=@listing[:address]%></li>
+        <li>Item Condition: <%=@listing[:condition]%></li>
+      </ul>
+
+    <% else %>
+
+      <h1>Sorry, thit listing does not exist or is private!</h1>
+
+    <% end %>
+    </div>
+
+  </div>
+
 </div>

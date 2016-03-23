@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
 
-  get '/use-policy', to: 'static_pages#use_policy'
-  get '/about', to: 'static_pages#about'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  # Site root
   root 'homepage#index'
 
+  # Static pages
+  get '/use-policy', to: 'static_pages#use_policy'
+  get '/about', to: 'static_pages#about'
+
+  # Listings controller
   resources :listings
+  # Verification link (alias for edit)
+  get '/listings/:id/verify', to: 'listings#verify'
 
 
   # Example of regular route:

@@ -14,12 +14,21 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    if @can_edit
+      # Validate this listing if it wasn't already (this happens the first time a user hits this page)
+      @listing.update_attribute(:validated, true) unless @listing.validated
+    else
+      # Incorrect edit key, redirect to show with an error parameter
+      # If this happens too many times in a row fromt he same IP (i.e. 10), 
+      # then we should temp ban the IP it came from
+      redirect_to(action: "show", v: false)
+    end
   end
 
   def new
   end
 
-  # Create new listing
+  # Create new listing from a post request
   def create
 
     # Respond with error if no categories
@@ -29,8 +38,6 @@ class ListingsController < ApplicationController
         format.json { render :json => { status: "bad_request", message: "No categories selected!" } }
       end
     end
-
-    # byebug
 
     # Create the listing and save it in the db
     @listing = Listing.new( listing_params )
@@ -50,11 +57,12 @@ class ListingsController < ApplicationController
       # LATER: Category should also get email address from last poster in case we get spam requests
     end
 
-
     # Build validation url
-    # site_url = "???"
-    # validate_route = "???"
-    # validate_url = site_url + validate_route + "?key=" + @listing.secret_key
+    # Not sure how to do this with url_for since it's not a built-in rails action
+    # validate_url = url_for(action: "verify") + "?key=" + @listing.secret_key
+    validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
+
+    puts "VALIDATION URL: " + validate_url # Remove this in production
 
     # Build validation email html
     
@@ -71,19 +79,24 @@ class ListingsController < ApplicationController
   def destroy
   end
 
-  # Validate a listing from email link
-  def validate
-    if @listing.secret_key == params[:key]
-      @listing.update_attribute(:validated, true)
-    else
-      # Failed to validate listing, return some kind of error
-    end
+  # Send verify to the edit page which does the validation
+  # We just want to use /verify in the email link to emphasize that users must visit this page at least once
+  def verify
+    redirect_to(action: "edit", key: params[:key])
   end
 
+
+  ##########################################
   private
 
+    def check_key
+      @listing.secret_key == params[:key]
+    end
+
     def find_listing
-      @listing = Listing.find( params[:id] )
+      @listing = Listing.find_by_id( params[:id] )
+      @can_view = !!@listing && @listing.validated
+      @can_edit = !!@listing && check_key
     end
 
     def listing_params
@@ -93,6 +106,7 @@ class ListingsController < ApplicationController
     def category_params
       params.permit(category_names: [])
     end
+
 
 end
 

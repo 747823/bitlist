@@ -11,6 +11,9 @@ class ListingsController < ApplicationController
   end
 
   def update
+    # Block update requests if can_edit didn't pass
+    # Is this syntax correct? This is ror, who the f knows ;D
+    return head(:bad_request) unless @can_edit
   end
 
   def edit
@@ -62,7 +65,8 @@ class ListingsController < ApplicationController
     # validate_url = url_for(action: "verify") + "?key=" + @listing.secret_key
     validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
 
-    puts "VALIDATION URL: " + validate_url # Remove this in production
+    # FOR TESTING -- Remove this in production
+    puts "VALIDATION URL: " + validate_url
 
     # Build validation email html
     

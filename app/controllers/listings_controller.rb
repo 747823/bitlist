@@ -61,7 +61,7 @@ class ListingsController < ApplicationController
     end
 
     # Build validation url
-    # Not sure how to do this with url_for since it's not a built-in rails action
+    # Not sure how to do this with url_for since it's not a built-in rails action?
     # validate_url = url_for(action: "verify") + "?key=" + @listing.secret_key
     validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
 

@@ -5,10 +5,9 @@
 
   <div class="page">
 
-    <%= render "partials/contact_bar" %>
-
-    <div class="main-grid">
     <% if @can_view %>
+    <%= render "partials/contact_bar" %>
+    <div class="main-grid">
 
       <h1>
         <%=@listing[:title]%></h1>
@@ -25,8 +24,9 @@
       </ul>
 
     <% else %>
+    <div class="main-grid">
 
-      <h1>Sorry, thit listing does not exist or is private!</h1>
+      <h1>Sorry, this listing does not exist or is hidden!</h1>
 
     <% end %>
     </div>

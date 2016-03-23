@@ -11,7 +11,7 @@
 
         <%#This stuff should be in a grid layout eventually I think %>
         <button class="light-grey">&larr;</button>
-        <p><%=@listing[:price]%> <%=@listing[:currency]%> &mdash; <%=@listing[:title]%></p>
+        <p><%= @listing.price %> <%= @listing.currency %> &mdash; <%= @listing.title %></p>
         <button>Contact Seller</button>
 
       </div>

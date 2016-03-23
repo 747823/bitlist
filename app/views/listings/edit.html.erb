@@ -1,26 +1,26 @@
 
 <div>
 
-  <%= render "partials/sidebar" %>
+  <%= render 'partials/sidebar' %>
   <div class="page">
 
-    <%= render "partials/edit_bar" %>
+    <%= render 'partials/edit_bar' %>
     <div class="main-grid">
 
       <h1>
 
       <h1>
-        <%=@listing[:title]%></h1>
+        <%= @listing.title %></h1>
       <h2>Seller description:</h2>
       <p>
-        <%=@listing[:description]%></p>
+        <%= @listing.description %></p>
       <h2>Listing details:</h2>
       <ul>
-        <li>Price: <%=@listing[:price]%> <%=@listing[:currency]%></li>
-        <li>Seller: <%=@listing[:author]%></li>
-        <li>Location: <%=@listing[:zipcode]%></li>
-        <li>Address: <%=@listing[:address]%></li>
-        <li>Item Condition: <%=@listing[:condition]%></li>
+        <li>Price: <%= @listing.price %> <%= @listing.currency %></li>
+        <li>Seller: <%= @listing.author %></li>
+        <li>Location: <%= @listing.zipcode %></li>
+        <li>Address: <%= @listing.address %></li>
+        <li>Item Condition: <%= @listing.condition %></li>
       </ul>
 
     </div>

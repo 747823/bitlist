@@ -19,7 +19,10 @@ class ListingsController < ApplicationController
   def edit
     if @can_edit
       # Validate this listing if it wasn't already (this happens the first time a user hits this page)
-      @listing.update_attribute(:validated, true) unless @listing.validated
+      unless @listing.validated
+        @listing.update_attribute(:validated, true)
+        @notification = "verified" # For rendering a "verified" notificaiton in the view
+      end
     else
       # Incorrect edit key, redirect to show with an error parameter
       # If this happens too many times in a row fromt he same IP (i.e. 10), 

@@ -2,7 +2,7 @@ require 'securerandom'
 
 class ListingsController < ApplicationController
   
-  before_action(:find_listing, only: [:edit, :show, :update, :destroy, :validate])
+  before_action(:find_listing, only: [:edit, :show, :update, :destroy])
 
   def index
   end

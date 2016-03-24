@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
 
   # Listings controller
-  resources :listings
-  # Verification link (alias for edit)
-  get '/listings/:id/verify', to: 'listings#verify'
+  resources :listings do
+    member do
+      get 'verify'
+    end
+  end
 
 
   # Example of regular route:

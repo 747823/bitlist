@@ -65,18 +65,16 @@ class ListingsController < ApplicationController
 
     # Build validation url
     # Not sure how to do this with url_for since it's not a built-in rails action?
-    # validate_url = url_for(action: "verify") + "?key=" + @listing.secret_key
     # (sam) not sure whether this is relevant but google: match ':controller(/:action(/:id))', :via => [:get, :post]
     # (sam) also see: http://stackoverflow.com/questions/19063109/link-to-vs-url-for-vs-path-in-rails
+    # validate_url = url_for(action: "verify", key: @listing.secret_key)
     validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
 
     # FOR TESTING -- Remove this in production
     puts "VALIDATION URL: " + validate_url
-
-    # Build validation email html
     
     # Send validation email
-
+    UserMailer.verify_email( @listing, validate_url ).deliver_now
 
     # Send success response
     respond_to do |format|

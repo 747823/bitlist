@@ -4,7 +4,7 @@ $break1: 500px
 // Tablet portrait
 $break2: 980px
 // Tablet/laptop landscape
-$break3: 1300px
+$break3: 1270px
 
 
 *
@@ -31,12 +31,13 @@ a
 
 .page 
   overflow: auto
-  transition: padding 0.2s
+  transition: padding 0.1s
+  padding-bottom: 50px
 
 .main-grid
   // Fix collapsing margins on top/bottom:
   margin: -1px auto 0
-  padding: 1px 0
+  padding: 1px 20px
   // border: 1px solid #ccc
   // Grid width breakpoints
   width: 1020px
@@ -62,6 +63,7 @@ button, .button
   // border-radius: 1px
   transition: background 0.2s, box-shadow 0.2s
   color: #fff
+  white-space: nowrap
   &:hover
     cursor: pointer
     background: #3377de
@@ -76,3 +78,7 @@ button, .button
     //   border: 1px solid #ccc
     //   color: #bbb
     //   text-decoration: underline
+
+.hide-on-mobile
+  @media ( max-width: $break1 )
+    display: none !important

@@ -4,5 +4,6 @@
   <%= stylesheet_link_tag 'partials/sidebar', media: 'all', 'data-turbolinks-track' => true %>
 <% end %>
 
+<button class="sidebar-expand" @click="toggleSidebar">{{ expandButtonText }}</button>
 <div class="sidebar">
 </div>

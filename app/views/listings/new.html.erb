@@ -1,6 +1,6 @@
 
 <%#Vue wrapping element%>
-<div>
+<div id="listing" v-bind:class="{ 'expanded': sidebarExpanded }">
   <%= render 'partials/sidebar' %>
   <div class="page">
     <%= render 'partials/edit_bar' %>

@@ -9,7 +9,7 @@
       data: {
 
         listingData: window.LISTING_DATA || {},
-        sidebarExpanded: false
+        sidebarExpanded: true
 
       },
       computed: {

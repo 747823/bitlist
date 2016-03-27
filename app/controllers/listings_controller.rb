@@ -53,6 +53,8 @@ class ListingsController < ApplicationController
     @listing.update_attribute( :validated, false )
     @listing.update_attribute( :secret_key, SecureRandom.hex )
 
+    puts polymorphic_url([:verify, :listing], id: @listing.id, :key => @listing.secret_key)
+
     # Check if the categories exist, create them if they don't, and create the categorization associations
     category_params[:category_names].each do |str|
       # Format the category name string
@@ -68,7 +70,8 @@ class ListingsController < ApplicationController
     # (sam) not sure whether this is relevant but google: match ':controller(/:action(/:id))', :via => [:get, :post]
     # (sam) also see: http://stackoverflow.com/questions/19063109/link-to-vs-url-for-vs-path-in-rails
     # validate_url = url_for(action: "verify", key: @listing.secret_key)
-    validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
+    #validate_url = request.base_url + "/listings/" + @listing.id.to_s + "/verify/?key=" + @listing.secret_key
+    validate_url = polymorphic_url([:verify, :listing], id: @listing.id, :key => @listing.secret_key)
 
     # FOR TESTING -- Remove this in production
     puts "VALIDATION URL: " + validate_url

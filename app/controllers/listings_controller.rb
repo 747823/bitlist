@@ -36,7 +36,6 @@ class ListingsController < ApplicationController
 
   # Create new listing from a post request
   def create
-
     # Respond with error if no categories
     # This should be more extensive, but this will probably never happen so we'll leave it for now
     if !category_params || category_params.empty?
@@ -46,14 +45,11 @@ class ListingsController < ApplicationController
     end
 
     # Create the listing and save it in the db
-    @listing = Listing.new( listing_params )
-    @listing.save
+    @listing = Listing.create( listing_params )
 
     # Set secret attributes
-    @listing.update_attribute( :validated, false )
-    @listing.update_attribute( :secret_key, SecureRandom.hex )
-
-    puts polymorphic_url([:verify, :listing], id: @listing.id, :key => @listing.secret_key)
+    #@listing.update_attribute( :validated, false )
+    #@listing.update_attribute( :secret_key, SecureRandom.hex )
 
     # Check if the categories exist, create them if they don't, and create the categorization associations
     category_params[:category_names].each do |str|
@@ -116,7 +112,29 @@ class ListingsController < ApplicationController
     def category_params
       params.permit(category_names: [])
     end
-
-
+=begin
+  $.ajax({
+  method: "post",
+  url: "/listings",
+  contentType: "json",
+  data: {
+    title: "Test post",
+    author: "Evan",
+    email: "test@test.com",
+    zipcode: 13801,
+    address: "200 Test Address",
+    price: 3.45,
+    currency: "BTC",
+    condition: "Like New",
+    description: "This is the fucking description bitch.",
+    category_names: ["Test category a", "Test category b"]
+    },
+    success: function( data ) {
+    console.log("success");
+    },
+    error: function( xhr, message ) {
+    console.log("error");
+    }
+  });
+=end
 end
-

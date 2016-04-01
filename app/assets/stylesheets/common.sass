@@ -25,6 +25,9 @@ body
 
 h1, h2, h3, h4, h5
   font-weight: 400
+  margin: 0 0 10px
+  &:last-child
+  margin: 0
 
 a
   text-decoration: none
@@ -33,6 +36,7 @@ a
   overflow: auto
   transition: padding 0.1s
   padding-bottom: 50px
+  padding-top: 30px
 
 button, .button
   display: inline-block
@@ -46,7 +50,7 @@ button, .button
   &:hover
     cursor: pointer
     background: #3377de
-    box-shadow: 0 1px 1px rgba(0,0,0,0.15)
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1)
   &.light-grey
     color: #bbb
     // text-decoration: underline
@@ -57,6 +61,7 @@ button, .button
     //   border: 1px solid #ccc
     //   color: #bbb
     //   text-decoration: underline
+
 
 .hide-on-mobile
   @media ( max-width: $break1 )
@@ -93,27 +98,35 @@ button, .button
   .col
     display: inline-block
     vertical-align: top
-    margin: -1px auto 19px
+    margin: -1px auto 18px //19px
     padding: 1px 10px 0
     -webkit-flex: 1 1 auto
     flex: 1 1 auto
     // border: 1px dotted #ccc
     &.span4of5
-      min-width: 80%
+      width: 80%
     &.span2of3, &.span4of6
-      min-width: 66.6%
+      width: 66.6%
     &.span3of5
-      min-width: 60%
+      width: 60%
     &.span6of11
-      min-width: 54.54%
+      width: 54.54%
     &.span2of3, &.span6of11, &.span3of5, &.span4of6
       flex: none
       -webkit-flex: none
     @media ( max-width: $break1 )
       width: 100%
       margin-bottom: 0
+      &.mini
+        width: 50%
 
 .test
   background: #f3f3f3
   padding: 20px
   // box-shadow: 0 1px 2px rgba(0,0,0,0.2)
+
+
+.ralign
+  text-align: right
+.center
+  text-align: center

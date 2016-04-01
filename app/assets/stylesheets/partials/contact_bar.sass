@@ -1,7 +1,6 @@
 
 // Variables
 $bgcolor: #fcfcfc
-$height: 72px
 $bordercolor: #e6e6e6
 $break2: 980px
 
@@ -11,17 +10,18 @@ $break2: 980px
   top: 0
   left: 0
   width: 100%
-  height: $height
+  // height: $height
   display: block
   z-index: 500
   .bar
     width: 100%
-    height: 100%
+    // height: 100%
     background: $bgcolor
     overflow: hidden
     border-bottom: 1px solid $bordercolor
-    padding-top: 18px
+    padding: 18px 0
     text-align: center
+    box-shadow: 0 0 2px rgba(0,0,0,0.2)
     *
       text-align: start
     button, p, a, h1, h2, h3, h4, h5
@@ -34,10 +34,17 @@ $break2: 980px
       overflow: hidden
       text-align: center
       padding: 0 10px
-    .flex-row
+    .row
+      margin: 0 10px
+      display: -webkit-flex
+      display: flex
+      -webkit-flex-direction: row
+      flex-direction: row
+      -webkit-justify-content: space-between
+      justify-content: space-between
       -webkit-align-items: center
       align-items: center
 
 // Adjust page's left padding to fit the sidebar in
 .page
-  padding-top: $height
+  padding-top: 100px

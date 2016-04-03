@@ -9,36 +9,39 @@
     <%= render 'partials/contact_bar' %>
     <div class="main-grid">
 
-      <div class="flex-row">
-        <div class="col span4of5">
-          <h1><%= @listing.title %></h1>
-        </div>
-        <div class="col">
+      <div class="clip">
+        <div class="row">
+          <div class="col span9">
+            <h1><%= @listing.title %></h1>
+          </div>
+          <div class="col"><%# spacer %></div>
         </div>
       </div>
 
-      <div class="flex-row">
-      <div class="col">
-        <h2>Seller description:</h2>
-        <p><%= @listing.description %></p>
-      </div>
-      <div class="col">
-        <h2>Listing details:</h2>
-        <ul>
-          <li>Price: <%= @listing.price %> <%= @listing.currency %></li>
-          <li>Seller: <%= @listing.author %></li>
-          <li>Location: <%= @listing.zipcode %></li>
-          <li>Address: <%= @listing.address %></li>
-          <li>Item Condition: <%= @listing.condition %></li>
-        </ul>
+      <div class="clip">
+        <div class="row">
+          <div class="col span6 wide">
+            <h2>Seller description:</h2>
+            <p><%= @listing.description %></p>
+          </div>
+          <div class="col span6 wide">
+            <h2>Listing details:</h2>
+            <ul>
+              <li>Price: <%= @listing.price %> <%= @listing.currency %></li>
+              <li>Seller: <%= @listing.author %></li>
+              <li>Location: <%= @listing.zipcode %></li>
+              <li>Address: <%= @listing.address %></li>
+              <li>Item Condition: <%= @listing.condition %></li>
+            </ul>
+          </div>
+        </div>
       </div>
 
     <% else %>
     <div class="main-grid">
-
       <h1>Sorry, this listing does not exist or is hidden!</h1>
-
     <% end %>
+
     </div>
 
 </div>

@@ -28,6 +28,10 @@ h1, h2, h3, h4, h5
   margin: 0 0 10px
   &:last-child
   margin: 0
+h1 
+  font-weight: 300
+  font-size: 37px
+  letter-spacing: -0.6px
 
 a
   text-decoration: none
@@ -38,6 +42,11 @@ a
   padding-bottom: 50px
   padding-top: 30px
 
+
+// Import grid layout
+@import "grid"
+
+
 button, .button
   display: inline-block
   padding: 5px 20px 6px
@@ -47,20 +56,18 @@ button, .button
   transition: background 0.2s, box-shadow 0.2s
   color: #fff
   white-space: nowrap
+  box-shadow: 0 0 0 rgba(0,0,0,0.0)
   &:hover
     cursor: pointer
     background: #3377de
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1)
+    box-shadow: 0 3px 5px rgba(0,0,0,0.1)
   &.light-grey
     color: #bbb
     // text-decoration: underline
     background: #fefefe
-    border: 1px solid #dfdfdf
-    // &:hover
-      // box-shadow: 0 1px 1px rgba(0,0,0,0.1)
-    //   border: 1px solid #ccc
-    //   color: #bbb
-    //   text-decoration: underline
+    border: 1px solid #ececec
+    &:hover
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05)
 
 
 .hide-on-mobile
@@ -68,63 +75,10 @@ button, .button
     display: none !important
 
 
-/*** flex grid ***/
-.main-grid
-  // Fix collapsing margins on top/bottom:
-  margin: -1px auto 0
-  padding: 1px 10px
-  // Width breakpoints
-  width: 1020px
-  @media ( max-width: $break3 )
-    width: 800px
-  @media ( max-width: $break2 )
-    width: 100%
-    max-width: 700px
-
-.flex-row
-  display: block
-  display: -webkit-flex
-  display: flex
-  width: 101%
-  height: auto
-  margin: -1px auto 0px
-  padding: 1px auto 0
-  -webkit-flex-direction: row
-  flex-direction: row
-  -webkit-flex-wrap: wrap
-  flex-wrap: wrap
-  @media ( max-width: $break1 )
-    margin-bottom: 20px
-  .col
-    display: inline-block
-    vertical-align: top
-    margin: -1px auto 18px //19px
-    padding: 1px 10px 0
-    -webkit-flex: 1 1 auto
-    flex: 1 1 auto
-    // border: 1px dotted #ccc
-    &.span4of5
-      width: 80%
-    &.span2of3, &.span4of6
-      width: 66.6%
-    &.span3of5
-      width: 60%
-    &.span6of11
-      width: 54.54%
-    &.span2of3, &.span6of11, &.span3of5, &.span4of6
-      flex: none
-      -webkit-flex: none
-    @media ( max-width: $break1 )
-      width: 100%
-      margin-bottom: 0
-      &.mini
-        width: 50%
-
 .test
   background: #f3f3f3
   padding: 20px
   // box-shadow: 0 1px 2px rgba(0,0,0,0.2)
-
 
 .ralign
   text-align: right

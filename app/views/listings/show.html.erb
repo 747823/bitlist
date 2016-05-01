@@ -12,6 +12,7 @@
       <div class="clip">
         <div class="row">
           <div class="col span9">
+            <p>[category1] [category2] <span class="updated">updated x days ago</span></p>
             <h1><%= @listing.title %></h1>
           </div>
           <div class="col"><%# spacer %></div>
@@ -21,18 +22,69 @@
       <div class="clip">
         <div class="row">
           <div class="col span6 wide">
+
+            <%# Images subgrid %>
+            <div clas="sub-grid">
+              <div class="sub-row">
+              <%# Main Image %>
+                <div class="sub-span6"></div>
+              </div>
+              <%# Append additional rows for extra images %>
+              <div class="sub-row">
+                <div class="sub-span3"></div>
+                <div class="sub-span3"></div>
+              </div>
+            </div>
+
             <h2>Seller description:</h2>
             <p><%= @listing.description %></p>
+
+            <%# Contact area subgrid %>
+            <div clas="sub-grid">
+              <div class="sub-row">
+                <div class="sub-span3"></div>
+                <div class="sub-span3"></div>
+              </div>
           </div>
+
+        </div>
+
+          <%# Right column %>
           <div class="col span6 wide">
-            <h2>Listing details:</h2>
-            <ul>
-              <li>Price: <%= @listing.price %> <%= @listing.currency %></li>
-              <li>Seller: <%= @listing.author %></li>
-              <li>Location: <%= @listing.zipcode %></li>
-              <li>Address: <%= @listing.address %></li>
-              <li>Item Condition: <%= @listing.condition %></li>
-            </ul>
+            <div class="map-container">
+              <%# Insert google maps api here %>
+            </div>
+            <div class="details">
+              <h2>Listing details:</h2>
+              <ul>
+                <li>
+                  <h4>Seller:</h4> 
+                  <p><%= @listing.author %></p>
+                </li>
+                <li>
+                  <h4>Seller Asking Price:</h4>
+                  <p><%= @listing.price %> <%= @listing.currency %> / (calc prices in vue)</p>
+                </li>
+                <li>
+                  <h4>Location:</h4>
+                  <p>
+                    <%# This should be output as a different format.
+                          if there's no address, just put the city+zip, otherwise put full address %>
+                    <%= @listing.address %>
+                    <%= @listing.zipcode %>
+                  </p>
+                </li>
+                <li>
+                  <h4>Item Condition:</h4>
+                  <p><%= @listing.condition %></p>
+                </li>
+                <li>
+                  <%# We might want to do this with vue too so we can format it more specifically %>
+                  <h4>Date Posted: <span class="light"><%= @listing.created_at %></span></h4>
+                  <h4>Last Updated: <span class="light"><%= @listing.updated_at %></span></h4>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

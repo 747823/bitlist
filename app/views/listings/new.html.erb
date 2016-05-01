@@ -3,10 +3,24 @@
 <div id="listing" v-bind:class="{ 'expanded': sidebarExpanded }">
   <%#= render 'partials/sidebar' %>
   <div class="page">
-    <%= render 'partials/edit_bar' %>
+    <%= render 'partials/new_listing_bar' %>
     <div class="main-grid">
 
-      <h1>Listings#new</h1>
+      <div class="clip">
+        <div class="row">
+          <div class="col span12">
+            <h1>Step 1: Fill out listing details</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip">
+        <div class="row">
+          <div class="col span12">
+            <h1>Step 2: Add images</h1>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

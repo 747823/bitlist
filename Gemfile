@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'geokit-rails'
 gem 'jade-rails', '~> 1.9', '>= 1.9.2.0'
-gem 'vuejs-rails'
+gem 'angularjs-rails'
 gem 'pg'
 gem 'carrierwave'
 

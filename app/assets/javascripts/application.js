@@ -13,11 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require vue
+//= require angular
 //
-// Always put application code in a closure with the "use strict"; directive:
-// (function(){
-//  "use strict";
-//  // Code goes here
-// })();
 

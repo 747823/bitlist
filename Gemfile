@@ -4,6 +4,7 @@ gem 'geokit-rails'
 gem 'jade-rails', '~> 1.9', '>= 1.9.2.0'
 gem 'vuejs-rails'
 gem 'pg'
+gem 'carrierwave'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

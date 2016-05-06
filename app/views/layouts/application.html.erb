@@ -16,9 +16,11 @@
 <body>
 
   <%= yield %>
+  <%= render 'partials/footer' %>
 
   <%# Render JS from application and controllers at the bottom %>
   <%= javascript_include_tag 'application', 'controllers/' << params[:controller], 'data-turbolinks-track' => true %>
+
 
 </body>
 </html>

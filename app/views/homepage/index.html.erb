@@ -1,4 +1,4 @@
-<div id="homepage">
+<div id="homepage" ng-controller="HomepageIndexCtrl">
   <div class="page">
     <div class="main-grid">
 
@@ -7,23 +7,19 @@
           <% #Main section %>
           <h1 class="title-max">Bitlist</h1>
           <h2>Local bitcoin classifieds</h2>
-          <p>Buy and sell stuff locally with bitcoins</p>
+          <p>{{ caption }}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="step location">
-          <h2>Find listings within 
-          <select>
-            <option>10</option>
-            <option>25</option>
-            <option selected="selected">50</option>
-            <option>100</option>
-            <option>250</option>
-          </select>
-          miles of <input type="text" name="location" placeholder="Enter a city or ZIP code">
-        </h2>
+            <h2>
+              Find listings within 
+              <select ng-model="locals.searchRadius" ng-options="opt.name for opt in locals.searchRadiusOptions"></select>
+              miles of 
+              <input type="text" name="location" placeholder="Enter a city or ZIP code" ng-model="locals.searchLocationInput">
+            </h2>
           </div>
         </div>
       </div>

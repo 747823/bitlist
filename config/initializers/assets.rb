@@ -11,4 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # Precompile all controller and partials JS and CSS
-Rails.application.config.assets.precompile += Dir.glob("#{Rails.root}/app/assets/{javascripts,stylesheets}/{controllers,partials}/*")
+Rails.application.config.assets.precompile += Dir.glob("#{Rails.root}/app/assets/{javascripts,stylesheets}/{controllers,partials,app}/*")

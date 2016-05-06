@@ -19,7 +19,7 @@
   <%= render 'partials/footer' %>
 
   <%# Render JS at the bottom %>
-  <%= javascript_include_tag 'application', 'app/app.js', 'controllers/' << params[:controller], 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'controllers/' << params[:controller], 'data-turbolinks-track' => true %>
 
 </body>
 </html>

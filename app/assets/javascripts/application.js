@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
-//
+//= require ng_app/main
 

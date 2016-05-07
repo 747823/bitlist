@@ -1,4 +1,5 @@
-<div id="homepage" ng-controller="HomepageIndexCtrl">
+<div id="homepage"
+  ng-controller="HomepageIndexCtrl">
   <div class="page">
     <div class="main-grid">
 
@@ -16,9 +17,14 @@
           <div class="step location">
             <h2>
               Find listings within 
-              <select ng-model="locals.searchRadius" ng-options="opt.name for opt in locals.searchRadiusOptions"></select>
+              <select 
+                ng-model="locals.searchRadius"
+                ng-options="opt.name for opt in locals.searchRadiusOptions"></select>
               miles of 
-              <input type="text" name="location" placeholder="Enter a city or ZIP code" ng-model="locals.searchLocation">
+              <input type="text" name="location" placeholder="Enter a city or ZIP code" 
+                ng-model="locals.searchLocation" 
+                ng-model-options="{ debounce: 1000 }"
+                ng-change="geocode()">
             </h2>
           </div>
         </div>

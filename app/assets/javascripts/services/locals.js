@@ -27,6 +27,8 @@
     locals.longitude = null;
     locals.city = "";
     locals.locationSet = false;
+    locals.cityMatches = [];
+    locals.matches = false;
 
     // Pull the city + "state" out of the google api JSON data
     locals.cityFromAddressComponents = function( addressComponents ) {
@@ -41,11 +43,39 @@
           break;
         }
       }
-      return city;
+      // Sometimes it will match an "administrative_area_level_1" but not "locality", so let's return false in those cases
+      return ( city.charAt(0) !== "," ) ? city : false;
+    }
+
+    // Set the list of city matches from the response
+    locals.setCityMatches = function( res ) {
+      for ( var each in res ) {
+        var city = locals.cityFromAddressComponents( res[each].address_components );
+        if ( city ) {
+          locals.cityMatches.push({ city: city, data: res[each] });
+        }
+      }
+    }
+
+    // Sets the matched city and other data from a single geocoded location
+    locals.setCity = function( data ) {
+      locals.latitude = data.geometry.location.lat();
+      locals.longitude = data.geometry.location.lng();
+      locals.city = locals.cityFromAddressComponents( data.address_components );
+      locals.searchLocation = locals.city;
+      locals.matches = false;
+      locals.cityMatches = [];
+      locals.locationSet = true;
+      console.log("Set local city to " + locals.city);
+      return false;
     }
 
     // Geocode the local search location
     locals.geocode = function( callback ) {
+
+      // Reset matches
+      locals.matches = false;
+      locals.cityMatches = [];
 
       // Skip geocoder call if search field is empty
       if ( !locals.searchLocation ) {
@@ -56,11 +86,6 @@
       // Reset location set
       locals.locationSet = false;
 
-      // Test cases: { address: "03801" }, 
-      // { address: "Portsmouth" }, 
-      // { address: "420 pleasant st, Portsmouth, NH" }, 
-      // { address: "Portsmouth, NH" }, 
-      // { address: "a bs location" },
       geocoder.geocode( {
         address: locals.searchLocation
       }, function( res, status ) {
@@ -68,19 +93,21 @@
         console.log( res );
 
         if ( res.length == 1 ) {
-          // Input matched one location, proceed to set values
-          locals.latitude = res[ 0 ].geometry.location.lat();
-          locals.longitude = res[ 0 ].geometry.location.lng();
-          locals.city = locals.cityFromAddressComponents( res[ 0 ].address_components );
-          locals.locationSet = true;
-          // console.log("Matched one location");
+          // Input matched one location, proceed to set values right away
+          // Make sure it's actually a valid city first
+          var city = locals.cityFromAddressComponents( res[0].address_components );
+          if ( city ) {
+            locals.setCity( res[ 0 ] );
+          }
+          res = city ? res : [];
         }
         else if ( res.length > 1 ) {
-          // Input matched more than one location
+          // Input matched more than one location, set the city matches
+          locals.setCityMatches( res );
+          locals.matches = true;
         }
 
         // Else input matched no location
-
         callback( res );
 
       } );

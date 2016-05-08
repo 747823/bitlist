@@ -5,10 +5,10 @@
 
       <div class="row">
         <div class="col">
-          <% #Main section %>
+          <%# Main section %>
           <h1 class="title-max">Bitlist</h1>
           <h2>Local bitcoin classifieds</h2>
-          <p>{{ caption }}</p>
+          <p>Buy and sell stuff locally with bitcoins</p>
         </div>
       </div>
 
@@ -21,10 +21,21 @@
                 ng-model="locals.searchRadius"
                 ng-options="opt.name for opt in locals.searchRadiusOptions"></select>
               miles of 
-              <input type="text" name="location" placeholder="Enter a city or ZIP code" 
-                ng-model="locals.searchLocation" 
-                ng-model-options="{ debounce: 1000 }"
-                ng-change="geocode()">
+              <div style="display: inline-block;">
+                <%# Location matches dropdown%>
+                <div class="input-select set-location" ng-show="locationInputFocused && locals.matches">
+                  <ul>
+                    <li ng-repeat="each in locals.cityMatches"><a href="" ng-click="locals.setCity( each.data )">{{ each.city }}</a></li>
+                  </ul>
+                </div>
+                <%# Actual input %>
+                <input type="text" name="location" placeholder="Enter a city or ZIP code" 
+                  ng-model="locals.searchLocation" 
+                  ng-model-options="{ debounce: 450 }"
+                  ng-change="geocode()"
+                  ng-focus="locationInputFocus()"
+                  ng-blur="locationInputBlur()">
+              </div>
             </h2>
           </div>
         </div>
